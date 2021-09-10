@@ -70,9 +70,9 @@ To run the test, you need to follow these steps
   
   ![Screenshot_Test_Runner](https://user-images.githubusercontent.com/74105380/126940145-51af5625-8ebf-472c-ba4f-bd202393fbf9.jpg)
 
-- And the test will run
+- And the test will run  
 
-  ![image](https://user-images.githubusercontent.com/74105380/126941724-5d3f2bb7-27d6-4534-9a7b-993887f00e83.png)
-  
+https://user-images.githubusercontent.com/74105380/132805226-43b3184d-ee8e-4a00-b481-617fa629cb50.mp4
+
   
 # All is Done!
