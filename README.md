@@ -23,6 +23,9 @@ Before start development and running the test you need to install packages that 
 
 ## Test Structure
 - Use `describe` function to create Test Suite (group of test cases)
+- Use `before` to run once before all tests
+- Use `beforeEach` to run before every test block
+- Use `after` to run once all tests are done
 - Use `It` function to create a test case
 - Example:
 ```
