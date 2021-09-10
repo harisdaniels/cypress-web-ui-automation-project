@@ -1,0 +1,80 @@
+describe("Test Suite for admin nopCommerce", function() {
+
+    before(function() {
+        cy.visit("https://admin-demo.nopcommerce.com/");
+    });
+
+    beforeEach(function() {
+        cy.fixture("data.json").then(function(data) {
+            this.data = data;
+        });
+    });
+
+    it("It should successful to Login and Navigate to the Dashboard Page", function() {
+        login.fillEmail(this.data.email);
+        login.fillPassword(this.data.password);
+        login.clickRememberMeCheckBox();
+        login.clickLoginButton();
+
+        cy.title().should('eq', "Dashboard / nopCommerce administration");
+    });
+    
+    it("It should successful to navigate to the Customers Page", function() {
+        dashboard.clickNopSideBarPusher();
+        dashboard.clickCustomersDropDown();
+        dashboard.clickCustomersLink();
+
+        login.clickLoginButton();
+
+        cy.title().should('eq', "Customers / nopCommerce administration");
+    });
+
+    it("It should navigate to Add New Customer Page", function() {
+        customerList.clickAddNewCustomerButton();
+
+        login.clickLoginButton();
+
+        cy.title().should('eq', "Add a new customer / nopCommerce administration");
+    });
+    
+    it("It should success to fill all the fields", function() {
+        addCustomer.inputEmail("test@gmail.com");
+        addCustomer.inputPassword("test123");
+        addCustomer.inputFirstName("Otong");
+        addCustomer.inputLastName("Surotong");
+        addCustomer.chooseGender("mAlE");
+        addCustomer.inputDOB("1/1/1970");
+        addCustomer.inputCompanyName("Otong Inc Ltd");
+        addCustomer.clicktaxExempt();
+        addCustomer.selectCustomerRole("Guests");
+        addCustomer.selectNewsLetter("Test store 2");
+        addCustomer.selectVendor("test");
+        addCustomer.inputAdminComment("This is for testing");
+        addCustomer.clickSaveButton();
+    });
+    
+    it("It should success to save the data", function() {
+        login.clickLoginButton();
+    });
+
+});
+
+
+searchCustomerByEmail(email) {
+        let table = cy.get("#customers-grid");
+        let rows = table.get("#customers-grid > tbody > tr");
+
+        let flag = false;
+
+        for (let row = 1; row <= rows.length; row ++) {
+            let getEmail = cy.get("#customers-grid > tbody > tr:nth-child("+row+") > td:nth-child(2)");
+            cy.log(getEmail);
+
+            if (getEmail === email) {
+                flag = true; // Found
+				break;
+            }
+        }
+
+        return flag;
+    }
